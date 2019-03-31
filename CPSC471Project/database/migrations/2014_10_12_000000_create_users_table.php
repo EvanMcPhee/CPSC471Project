@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('city');
-            $table->string('provice_state');
+            $table->string('province_state');
             $table->boolean('player_flag')->default(0);
             $table->boolean('captain_flag')->default(0);
             $table->boolean('league_admin_flag')->default(0);
