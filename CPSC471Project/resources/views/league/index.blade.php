@@ -12,12 +12,14 @@
     {
         var x = document.getElementById('editdiv');
         x.innerHTML = document.getElementById('cityleagues').innerHTML;
+        document.getElementById('title').innerHTML = "City Leagues";
     }
 
     function allLeagues()
     {
       var x = document.getElementById('editdiv');
       x.innerHTML = document.getElementById('allleagues').innerHTML;
+      document.getElementById('title').innerHTML = "All Leagues";
     }
   </script>
 
