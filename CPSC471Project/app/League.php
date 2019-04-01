@@ -19,4 +19,9 @@ class League extends Model
   {
     return $this->hasMany(Equipment::class);
   }
+
+  public function activity()
+  {
+    return $this -> hasOne(Activity::class);
+  }
 }
