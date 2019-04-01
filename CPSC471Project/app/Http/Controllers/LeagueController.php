@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\League;
+use App\Activity;
+use Auth;
 
 class LeagueController extends Controller
 {
@@ -19,7 +22,11 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        //
+        $allleagues = League::all();
+        $allactivities = Activity::all();
+        $user = Auth::user();
+
+        return view('league.index', compact('allleagues', 'allactivities', 'user'));
     }
 
     /**
@@ -40,7 +47,26 @@ class LeagueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $league = new League();
+        $activity = new Activity();
+        $adminusername= Auth::user()->username;
+
+        $activity->name = request('activity');
+        $activity->description = request('activitydescription');
+        $activity->rules = request('activityrules');
+
+        $activity->save();
+
+        $league->city = request('city');
+        $league->provice_state = request('province_state');
+        $league->name = request('name');
+        $league->description = request('leaguedescription');
+        $league->admin_username = $adminusername;
+        $league->activityid = $activity->id;
+
+        $league->save();
+
+        return redirect('/leagues');
     }
 
     /**
