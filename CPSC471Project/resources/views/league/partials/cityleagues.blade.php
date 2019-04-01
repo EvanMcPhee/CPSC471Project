@@ -1,7 +1,7 @@
 <div id='leaguelist'>
   <div id='filter'>
   @foreach($allleagues as $league)
-    @if($league->city == $user.city)</div>
+    @if($league->city == $user->city)</div>
       <div class="card">
       <div class="card-header">
         <a href="{{ action('LeagueController@show', $league->id) }}">{{ $league->name }}</a>
