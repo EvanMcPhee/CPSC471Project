@@ -12,7 +12,7 @@ class Activity extends Model
 
   public function league()
   {
-    return $this->belongsTo(League::class);
+    return $this->hasMany(League::class);
   }
 
   public function game()
