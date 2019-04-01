@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
   <script>
     function yourLeagues()
     {
@@ -8,13 +10,14 @@
 
     function cityLeagues()
     {
-      var editdiv = document.getElementById("filter");
-
+        var x = document.getElementById('editdiv');
+        x.innerHTML = document.getElementById('cityleagues').innerHTML;
     }
 
     function allLeagues()
     {
-
+      var x = document.getElementById('editdiv');
+      x.innerHTML = document.getElementById('allleagues').innerHTML;
     }
   </script>
 
@@ -30,10 +33,24 @@
 
     <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="allLeagues()">
       All Leagues
+    </button>
+    <button type="button" class="btn btn-primary float-right" data-toggle="button" onclick="location.href='{{ url('/leagues/create') }}'">
+      Create League
     </button><br><br>
 
 
-    @include(allleagues)
+    <div id=editdiv>
+      @include('league/partials/allleagues')
+    </div>
+
+    <script id="cityleagues" type="text/html">
+      @include('league/partials/cityleagues')
+    </script>
+
+    <script id="allleagues" type="text/html">
+      @include('league/partials/allleagues')
+    </script>
+
 
   </div>
 
