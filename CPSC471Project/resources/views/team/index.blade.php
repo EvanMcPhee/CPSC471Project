@@ -29,9 +29,14 @@
     </button>
     <button type="button" class="btn btn-primary float-right" data-toggle="button" onclick="location.href='{{ url('/teams/create') }}'">
       Create Team
-    </button><br><br>
+    </button>
 
-
+    @if(Auth::user()->captain_flag == 1)
+      <button type="button" class="btn btn-primary" data-toggle="button" onclick="location.href='{{ url('/teams/requests') }}'">
+        View Team Requests
+      </button>
+    @endif
+    <br><br>
     <div id=editdiv>
       @include('team/partials/yourteams')
     </div>

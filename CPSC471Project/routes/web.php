@@ -21,6 +21,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+
+Route::get('leagues/request/{id}', 'LeagueController@request');
+Route::get('leagues/requests', 'LeagueController@viewRequests');
+Route::post('leagues/acceptRequest', 'LeagueController@acceptRequest');
+Route::post('leagues/request', 'LeagueController@storeRequest');
 Route::resource('leagues', 'LeagueController');
 
+
+
+Route::get('teams/request/{id}', 'TeamController@request');
+Route::get('teams/requests', 'TeamController@viewRequests');
+Route::post('teams/acceptRequest', 'TeamController@acceptRequest');
+Route::post('teams/request', 'TeamController@storeRequest');
+
 Route::resource('teams', 'TeamController');
+
+Route::get('messagecreate', 'UserController@messageCreate');
+
+Route::post('messagestore', 'UserController@messageStore');
+
+Route::get('messagehome', 'UserController@messageHome');
+
+Route::get('show/{id}', 'UserController@show');
