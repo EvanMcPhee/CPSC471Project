@@ -21,7 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+
+Route::get('leagues/request/{id}', 'LeagueController@request');
+Route::get('leagues/requests', 'LeagueController@viewRequests');
+Route::post('leagues/acceptRequest', 'LeagueController@acceptRequest');
+Route::post('leagues/request', 'LeagueController@storeRequest');
 Route::resource('leagues', 'LeagueController');
+
+
 
 Route::get('teams/request/{id}', 'TeamController@request');
 Route::get('teams/requests', 'TeamController@viewRequests');

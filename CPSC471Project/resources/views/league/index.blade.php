@@ -5,7 +5,9 @@
   <script>
     function yourLeagues()
     {
-      //todo
+      var x = document.getElementById('editdiv');
+      x.innerHTML = document.getElementById('yourleagues').innerHTML;
+      document.getElementById('title').innerHTML = "Your Leagues";
     }
 
     function cityLeagues()
@@ -24,7 +26,7 @@
   </script>
 
   <div class='container'>
-    <h1 id='title'>All Leagues </h1><br>
+    <h1 id='title'>Your Leagues </h1><br>
     <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="yourLeagues()">
       Your Leagues
     </button>
@@ -36,13 +38,18 @@
     <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="allLeagues()">
       All Leagues
     </button>
+    @if(Auth::user()->league_admin_flag == 1)
+      <button type="button" class="btn btn-primary" data-toggle="button" onclick="location.href='{{ url('/leagues/requests') }}'">
+        View League Requests
+      </button>
+    @endif
     <button type="button" class="btn btn-primary float-right" data-toggle="button" onclick="location.href='{{ url('/leagues/create') }}'">
       Create League
     </button><br><br>
 
 
     <div id=editdiv>
-      @include('league/partials/allleagues')
+      @include('league/partials/yourleagues')
     </div>
 
     <script id="cityleagues" type="text/html">
@@ -51,6 +58,10 @@
 
     <script id="allleagues" type="text/html">
       @include('league/partials/allleagues')
+    </script>
+
+    <script id="yourleagues" type="text/html">
+      @include('league/partials/yourleagues')
     </script>
 
 
