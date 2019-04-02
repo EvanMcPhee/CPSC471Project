@@ -22,3 +22,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::resource('leagues', 'LeagueController');
+
+Route::get('messagehome', 'UserController@messageHome');
+
+//Route::get('userhome', 'UserController@userHome');
+
+Route::get('messagecreate', 'UserController@messageCreate');
+
+Route::post('messagestore', 'UserController@messageStore');
