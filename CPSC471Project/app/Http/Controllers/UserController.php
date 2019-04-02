@@ -29,9 +29,10 @@ class UserController extends Controller
         return view('user.messagecreate', compact('user','allmsgs','allusers'));
         }
 
-        public function messageStore(Request $request)
+        public function messageStore(Request $message)
         {
-            $message = new Message();
+            
+            $newmessage = new Message();
             $currentuser = Auth::user();
             $allusers = User::all();
 
@@ -44,11 +45,19 @@ class UserController extends Controller
             }
 
             if($flag){
+              $newmessage = new Message();
+              $newmessage->sender = $currentuser->username;
+              $newmessage->reciever = $message->username;
+              $newmessage->content = $message->content;
+              $newmessage->save();
+              return redirect('messagehome');
 
             } else {
-              return view('user.messageCreate');
+              $failmessage = "Sorry that user does not exist";
+              $user = Auth::user();
+              $allmsgs = Message::all();
+              $allusers = User::all();
+              return view('user.messagecreate', compact('user','allmsgs','allusers', 'failmessage'));
             }
-
-            return redirect('/leagues');
         }
 }

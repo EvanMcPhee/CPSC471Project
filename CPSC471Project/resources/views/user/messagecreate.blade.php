@@ -5,7 +5,14 @@
 
 
 </script>
-
+@if(!empty($failmessage))
+  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+    <strong>Sorry that user does not exist </strong>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>
+@endif
 <div class="container-fluid">
   <form class="form-horizontal" method="post" action="{{ action('UserController@messageStore') }}">
 
