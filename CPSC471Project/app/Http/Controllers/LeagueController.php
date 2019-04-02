@@ -50,6 +50,7 @@ class LeagueController extends Controller
         $league = new League();
         $activity = new Activity();
         $adminusername= Auth::user()->username;
+        $user = Auth::user();
 
         $activity->name = request('activity');
         $activity->description = request('activitydescription');
@@ -65,6 +66,10 @@ class LeagueController extends Controller
         $league->activityid = $activity->id;
 
         $league->save();
+
+        $user->league_admin_flag = 1;
+
+        $user->save();
 
         return redirect('/leagues');
     }
