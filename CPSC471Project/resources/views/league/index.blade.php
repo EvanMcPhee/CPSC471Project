@@ -49,7 +49,7 @@
 
 
     <div id=editdiv>
-      @include('league/partials/yourleagues')
+      @include('league/partials/allleagues')
     </div>
 
     <script id="cityleagues" type="text/html">
