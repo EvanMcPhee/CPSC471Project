@@ -6,7 +6,7 @@
     <h1>{{ $league->name }}</h2>
 
     <h4>Admin: <a href="{{ action('UserController@show', $admin->id) }}">{{ $admin->username }}</a></h4></h4>
-
+    <p>{{ $league->description }}</p>
 
     <?php $flag = 0 ?>
     @foreach($leagueteams as $leagueteam)
@@ -19,6 +19,10 @@
 
     @if($flag == 0)
       <a href="{{ action('LeagueController@request', $league->id) }}" class="btn btn-primary"> Request To Join League </a>
+    @endif
+
+    @if(Auth::user()->username == $league->admin_username)
+      <a href="{{ action('GameController@schedule', $league->id) }}" class="btn btn-primary"> Schedule a Game </a>
     @endif
 
     <h4>Teams: </h4>
