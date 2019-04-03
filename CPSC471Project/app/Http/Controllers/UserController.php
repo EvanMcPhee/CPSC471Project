@@ -31,8 +31,6 @@ class UserController extends Controller
 
         public function messageStore(Request $message)
         {
-            
-            $newmessage = new Message();
             $currentuser = Auth::user();
             $allusers = User::all();
 
@@ -59,5 +57,11 @@ class UserController extends Controller
               $allusers = User::all();
               return view('user.messagecreate', compact('user','allmsgs','allusers', 'failmessage'));
             }
+
+        }
+
+        public function show($id)
+        {
+          return "todo";
         }
 }

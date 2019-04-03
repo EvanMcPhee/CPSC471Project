@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('captain_username');
-            $table->unsignedBigInteger('leagueid');
+            $table->unsignedBigInteger('leagueid')->nullable();
             $table->timestamps();
 
 
