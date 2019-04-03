@@ -8,6 +8,7 @@
 
     {{ csrf_field() }}
     <input type="hidden" name="leagueid" value= {{ $league->id }}>
+    <input type="hidden" name="activityid" value= {{ $activity->id }}>
 
     <div class="form-group">
       <label for="homeid">Select Home Team:</label>

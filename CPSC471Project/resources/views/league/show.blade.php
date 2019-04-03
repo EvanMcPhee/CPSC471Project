@@ -17,13 +17,15 @@
       @endforeach
     @endforeach
 
-    @if($flag == 0)
+    @if($flag == 0 && Auth::user()->captain_flag == 1)
       <a href="{{ action('LeagueController@request', $league->id) }}" class="btn btn-primary"> Request To Join League </a>
     @endif
 
     @if(Auth::user()->username == $league->admin_username)
       <a href="{{ action('GameController@schedule', $league->id) }}" class="btn btn-primary"> Schedule a Game </a>
     @endif
+
+      <a href="{{ action('GameController@index', $league->id) }}" class="btn btn-primary"> View Games </a>
 
     <h4>Teams: </h4>
 
