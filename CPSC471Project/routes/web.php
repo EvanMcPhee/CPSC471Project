@@ -28,6 +28,7 @@ Route::post('leagues/acceptRequest', 'LeagueController@acceptRequest');
 Route::post('leagues/request', 'LeagueController@storeRequest');
 Route::resource('leagues', 'LeagueController');
 
+Route::get('messagehome', 'UserController@messageHome');
 
 
 Route::get('teams/request/{id}', 'TeamController@request');
@@ -40,8 +41,6 @@ Route::resource('teams', 'TeamController');
 Route::get('messagecreate', 'UserController@messageCreate');
 
 Route::post('messagestore', 'UserController@messageStore');
-
-Route::get('messagehome', 'UserController@messageHome');
 
 Route::get('show/{id}', 'UserController@show');
 
