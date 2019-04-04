@@ -51,3 +51,5 @@ Route::get('leagues/{leagueid}/games/{gameid}/declarewinner', 'GameController@de
 Route::get('leagues/{leagueid}/games/{gameid}', 'GameController@show');
 Route::post('storegame', 'GameController@store');
 Route::post('storeresults', 'GameController@storeResults');
+
+Route::get('leagues/{leagueid}/games/{gameid}/statform', 'StatController@statForm');

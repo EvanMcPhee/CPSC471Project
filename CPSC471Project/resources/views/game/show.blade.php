@@ -18,10 +18,17 @@
         <a href="{{ action('TeamController@show', $team->id) }}">{{ $team->name }}</a>
       @endif
     @endforeach
+
+    @if(Auth::user()->username == $league->admin_username || Auth::user()->username == $hometeam->captain_username || Auth::user()->username == $awayteam->captain_username)
+      <br><br>
+      <a href="{{ action('StatController@statForm', array($league->id, $game->id)) }}" class="btn btn-primary">Add a Player Statistic</a>
+      <p>Stats will show up on the users page</p>
+    @endif
   </h4>
   @elseif(Auth::user()->username == $league->admin_username || Auth::user()->username == $hometeam->captain_username || Auth::user()->username == $awayteam->captain_username)
     <a href="{{ action('GameController@declarewinner', array($league->id, $game->id)) }}" class="btn btn-primary">Submit Winner and Score</a>
   @endif
+
 
 </div>
 @endsection

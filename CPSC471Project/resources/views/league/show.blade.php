@@ -30,8 +30,9 @@
     <h4>Teams: </h4>
 
     <div class="list-group">
-      @foreach($leagueteams as $leagueteam)
-          <a href="{{ action('TeamController@show', $leagueteam->id) }}" class="list-group-item list-group-item-action list-group-item-primary">{{ $leagueteam->name }}</a>
+      @foreach($sortedleagueteams as $leagueteam)
+
+          <a href="{{ action('TeamController@show', $leagueteam->id) }}" class="list-group-item list-group-item-action list-group-item-primary">{{ $leagueteam->name }}   <p style="float:right">{{$leagueteam->wins}} - {{$leagueteam->losses}}</p></a>
       @endforeach
     </div>
   </div>
