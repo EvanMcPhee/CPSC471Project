@@ -8,17 +8,16 @@
 
 <div class="container-fluid">
   <div class='row'>
-    <div class='col-md-4'>
-    </div>
-  <div class='col-md-3' align='center'>
+  <div class='col-md-3'>
 <h2> Create new conversation: </h2>
   </div>
-  <div class='col-md-1'>
+  <div class='col-md-2'>
     <button type='button' class='btn btn-primary btn-block' onclick="location.href='{{url('messagecreate')}}'"> Create </button>
   </div>
 </div>
 
 <div class='row'>
+</hr>
 </br>
 </br>
 </div>
@@ -35,10 +34,7 @@
         <div class='col-md-4'>
         </div>
         <div class='col-md-4'>
-          <form method="get" action="{{ action('UserController@conversation', $otheruser->username) }}">
-            {{ csrf_field() }}
-          <button type='submit' name='username' value='{{$otheruser->username}}' class='btn btn-secondary btn-lg btn-block'> {{$otheruser->username}} </button>
-          </form>
+          <td><button type='button' class='btn btn-secondary btn-lg btn-block'> {{$otheruser->username}} </button></td>
         </div>
         <div class='col-md-4'>
         </div>
