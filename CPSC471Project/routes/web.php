@@ -45,6 +45,11 @@ Route::get('messagehome', 'UserController@messageHome');
 
 Route::get('show/{id}', 'UserController@show');
 
+
+Route::get('conversation/{username}', 'UserController@conversation');
+
+Route::post('messageupdate','UserController@messageUpdate');
+
 Route::get('leagues/{id}/schedule', 'GameController@schedule');
 Route::get('leagues/{id}/games', 'GameController@index');
 Route::get('leagues/{leagueid}/games/{gameid}/declarewinner', 'GameController@declarewinner');
@@ -53,6 +58,11 @@ Route::post('storegame', 'GameController@store');
 Route::post('storeresults', 'GameController@storeResults');
 
 Route::get('leagues/{leagueid}/games/{gameid}/statform', 'StatController@statForm');
+
+Route::get('messagesend/{username}','UserController@messageSend');
+
+Route::post('messagestoredirect','UserController@messageStoreDirect');
+
 Route::post('stats', 'StatController@store');
 
 Route::get('leagues/{leagueid}/equipment', 'EquipmentController@index');
