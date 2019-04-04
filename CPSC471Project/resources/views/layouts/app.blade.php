@@ -52,7 +52,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                          <!--  <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -68,9 +68,25 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </li> -->
+                            <a class="nav-link" href="{{ action('UserController@show', Auth::user()->id) }}">
+                                {{ Auth::user()->username }} <span class="caret"></span>
+                            </a>
+                            &nbsp&nbsp
+                            <a  class='nav-link' onclick="location.href='{{url('messagehome')}}'"> Messages </a>
+                            &nbsp&nbsp
+                            <a onclick="location.href='{{ url('/leagues') }}'" class='nav-link'>Leagues</a>
+                            &nbsp&nbsp
+                            <a onclick="location.href='{{ url('/teams') }}'" class='nav-link'>Teams</a>
+                            &nbsp&nbsp
+                            <a class='nav-link' href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+
                         @endguest
-                        <button type='button' class='btn btn-primary' onclick="location.href='{{url('messagehome')}}'"> Messages </button>
                     </ul>
                 </div>
             </div>
