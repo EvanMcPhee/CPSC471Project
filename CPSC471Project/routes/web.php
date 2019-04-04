@@ -52,3 +52,4 @@ Route::post('storegame', 'GameController@store');
 Route::post('storeresults', 'GameController@storeResults');
 
 Route::get('leagues/{leagueid}/games/{gameid}/statform', 'StatController@statForm');
+Route::post('stats', 'StatController@store');
