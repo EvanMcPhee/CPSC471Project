@@ -70,12 +70,19 @@ class UserController extends Controller
 
 
             $user = DB::table('users')->where('username','=',$message->username)->first();
+            $teamstats = DB::table('belongs_tos')->where('username','=',$user->username)
+                        ->join('teams','belongs_tos.teamid','=','teams.id')
+                        ->join('leagues','teams.leagueid','=','leagues.id')
+                        ->join('games','leagues.id','=','games.leagueid')
+                        ->join('stats','games.id','=','stats.gameid')
+                        ->select('teams.id','stats.stat_type','stats.value')
+                        ->where('stats.player_username','=',$user->username)
+                        ->get();
             $teams = DB::table('belongs_tos')->where('username','=',$user->username)
                         ->join('teams','belongs_tos.teamid','=','teams.id')
-                        ->select('teams.name')
                         ->get();
 
-            return view('user.userhome', compact('user','teams'));
+            return view('user.userhome', compact('user','teams','teamstats'));
 
         }
 

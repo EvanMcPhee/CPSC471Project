@@ -8,7 +8,9 @@
 
 <div class="container-fluid">
 <h1>{{$user->username}} <small>, Age: {{$user->age}}, Located: {{$user->province_state}}</small> </h1>
+@if(Auth::user()->username != $user->username)
 <button type='button' class='btn btn-primary' onclick="location.href='{{url('messagesend',$user->username)}}'"> Send Message </button>
+@endif
 </br>
 </br>
 <h1> Teams: </h1>
