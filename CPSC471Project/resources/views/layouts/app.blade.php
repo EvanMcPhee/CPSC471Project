@@ -69,6 +69,7 @@
                                     </form>
                                 </div>
                             </li>
+                            <button type='button' class='btn btn-primary btn-lg' onclick="location.href='{{url('messagehome')}}'"> Messages </button>
                         @endguest
                         <button type='button' class='btn btn-primary' onclick="location.href='{{url('messagehome')}}'"> Messages </button>
                     </ul>

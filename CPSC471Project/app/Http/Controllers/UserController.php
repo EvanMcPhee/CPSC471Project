@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Message;
 use App\User;
+use DB;
 
 class UserController extends Controller
 {
@@ -17,16 +18,14 @@ class UserController extends Controller
 
     function messageHome(){
       $user = Auth::user();
-      $allmsgs = Message::all();
+      $allmsgs = DB::table('messages')->select('sender','reciever')->where('sender','=',$user->username)->orWhere('reciever','=',$user->username)->get();//Message::all();
       $allusers = User::all();
       return view('user.messagehome', compact('user','allmsgs','allusers'));
       }
 
       function messageCreate(){
-        $user = Auth::user();
-        $allmsgs = Message::all();
-        $allusers = User::all();
-        return view('user.messagecreate', compact('user','allmsgs','allusers'));
+
+        return view('user.messagecreate');
         }
 
         public function messageStore(Request $message)
@@ -48,20 +47,63 @@ class UserController extends Controller
               $newmessage->reciever = $message->username;
               $newmessage->content = $message->content;
               $newmessage->save();
-              return redirect('messagehome');
+              $user = Auth::user();
+              $allmsgs = DB::table('messages')->select('sender','reciever')->where('sender','=',$user->username)->orWhere('reciever','=',$user->username)->get();
+              $allusers = User::all();
+              return view('user.messagehome', compact('user','allmsgs','allusers'));
 
             } else {
               $failmessage = "Sorry that user does not exist";
-              $user = Auth::user();
-              $allmsgs = Message::all();
-              $allusers = User::all();
-              return view('user.messagecreate', compact('user','allmsgs','allusers', 'failmessage'));
+              return view('user.messagecreate', compact('failmessage'));
             }
+        }
+
+        function show(){
 
         }
 
-        public function show($id)
+        function conversation(Request $request){
+          $sender = Auth::user();
+          $sender = $sender->username;
+
+          $reciever = DB::table('users')->select('username')->where('users.username','=',$request->username)->first();
+          $reciever = $reciever->username;
+
+          $msgs = DB::table('messages') //SELECT * FROM messages
+                                ->where([['sender','=', $sender],['reciever','=', $reciever]]) //WHERE messages.sender = $sender AND messages.reciever = $reciever
+                                ->orWhere([['sender','=', $reciever],['reciever','=', $sender]]) // OR WHERE messages.sender = $reciever AND messages.reciever = $sender
+                                ->orderBy('id','asc') //order id in ascending order
+                                ->get();//gives us the result of the query as an object
+
+          return view('user.conversation', compact('reciever','sender','msgs'));
+        }
+
+        public function messageUpdate(Request $message)
         {
-          return "todo";
+
+            $newmessage = new Message();
+            $currentuser = Auth::user();
+
+            $newmessage = new Message();
+            $newmessage->sender = $currentuser->username;
+            $newmessage->reciever = $message->username;
+            $newmessage->content = $message->content;
+            $newmessage->save();
+
+            $sender = Auth::user();
+            $sender = $sender->username;
+
+            $reciever = DB::table('users')->select('username')->where('users.username','=',$message->username)->first();
+            $reciever = $reciever->username;
+
+            $msgs = DB::table('messages') //SELECT * FROM messages
+                                  ->where([['sender','=', $sender],['reciever','=', $reciever]]) //WHERE messages.sender = $sender AND messages.reciever = $reciever
+                                  ->orWhere([['sender','=', $reciever],['reciever','=', $sender]]) // OR WHERE messages.sender = $reciever AND messages.reciever = $sender
+                                  ->orderBy('id','asc') //order id in ascending order
+                                  ->get();//gives us the result of the query as an object
+
+            return view('user.conversation', compact('reciever','sender','msgs'));
+
+
         }
 }

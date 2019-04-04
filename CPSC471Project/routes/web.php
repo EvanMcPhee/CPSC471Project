@@ -44,6 +44,11 @@ Route::post('messagestore', 'UserController@messageStore');
 
 Route::get('show/{id}', 'UserController@show');
 
+
+Route::get('conversation/{username}', 'UserController@conversation');
+
+Route::post('messageupdate','UserController@messageUpdate');
+
 Route::get('leagues/{id}/schedule', 'GameController@schedule');
 Route::get('leagues/{id}/games', 'GameController@index');
 Route::get('leagues/{leagueid}/games/{gameid}/declarewinner', 'GameController@declarewinner');
