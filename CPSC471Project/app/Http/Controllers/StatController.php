@@ -9,6 +9,7 @@ use App\Team;
 use App\RequestsToJoinLeague;
 use App\BelongsTo;
 use App\Game;
+use App\Stat;
 use Auth;
 use DB;
 class StatController extends Controller
@@ -37,5 +38,18 @@ class StatController extends Controller
 
       $teams = Team::all();
       return view('stat.statform', compact('league', 'game', 'hometeam', 'awayteam', 'teams', 'awayplayers', 'homeplayers'));
+    }
+
+    public function store(Request $request)
+    {
+      $stat = new Stat();
+      $stat->gameid = $request->gameid;
+      $stat->player_username = $request->playerusername;
+      $stat->stat_type = $request->stattype;
+      $stat->value = $request->statvalue;
+
+      $stat->save();
+
+      return redirect('/leagues/'. $request->leagueid . '/games/' . $request->gameid);
     }
 }
