@@ -45,5 +45,10 @@ Route::post('messagestore', 'UserController@messageStore');
 Route::get('show/{id}', 'UserController@show');
 
 Route::get('leagues/{id}/schedule', 'GameController@schedule');
-
+Route::get('leagues/{id}/games', 'GameController@index');
+Route::get('leagues/{leagueid}/games/{gameid}/declarewinner', 'GameController@declarewinner');
+Route::get('leagues/{leagueid}/games/{gameid}', 'GameController@show');
 Route::post('storegame', 'GameController@store');
+Route::post('storeresults', 'GameController@storeResults');
+
+Route::get('leagues/{leagueid}/games/{gameid}/statform', 'StatController@statForm');

@@ -17,7 +17,7 @@
       @endforeach
     @endforeach
 
-    @if($flag == 0)
+    @if($flag == 0 && Auth::user()->captain_flag == 1)
       <a href="{{ action('LeagueController@request', $league->id) }}" class="btn btn-primary"> Request To Join League </a>
     @endif
 
@@ -25,11 +25,14 @@
       <a href="{{ action('GameController@schedule', $league->id) }}" class="btn btn-primary"> Schedule a Game </a>
     @endif
 
+      <a href="{{ action('GameController@index', $league->id) }}" class="btn btn-primary"> View Games </a>
+
     <h4>Teams: </h4>
 
     <div class="list-group">
-      @foreach($leagueteams as $leagueteam)
-          <a href="{{ action('TeamController@show', $leagueteam->id) }}" class="list-group-item list-group-item-action list-group-item-primary">{{ $leagueteam->name }}</a>
+      @foreach($sortedleagueteams as $leagueteam)
+
+          <a href="{{ action('TeamController@show', $leagueteam->id) }}" class="list-group-item list-group-item-action list-group-item-primary">{{ $leagueteam->name }}   <p style="float:right">{{$leagueteam->wins}} - {{$leagueteam->losses}}</p></a>
       @endforeach
     </div>
   </div>
