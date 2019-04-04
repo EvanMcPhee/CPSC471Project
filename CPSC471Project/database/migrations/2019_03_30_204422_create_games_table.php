@@ -17,9 +17,9 @@ class CreateGamesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('homeid');
             $table->unsignedBigInteger('awayid');
-            $table->unsignedBigInteger('winnerid');
+            $table->unsignedBigInteger('winnerid')->nullable();
             $table->unsignedBigInteger('leagueid');
-            $table->text('score');
+            $table->text('score')->nullable();
             $table->unsignedBigInteger('activityid');
             $table->date('game_date');
             $table->timestamps();

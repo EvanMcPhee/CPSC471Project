@@ -8,6 +8,7 @@ use App\Activity;
 use App\Team;
 use App\RequestsToJoinLeague;
 use App\BelongsTo;
+use App\Game;
 use Auth;
 use DB;
 
@@ -106,7 +107,33 @@ class LeagueController extends Controller
           ->select('teams.*')
           ->get();
 
-      return view('league.show', compact('league', 'leagueteams', 'admin', 'userteams'));
+      $games = DB::table('games')
+        ->where('games.leagueid', '=', $id)
+        ->get();
+
+        for($i = 0; $i < $leagueteams->count(); $i+=1)
+        {
+          $wins = 0;
+          $losses = 0;
+            foreach($games as $game)
+            {
+              if($game->winnerid == $leagueteams->all()[$i]->id)
+              {
+                $wins += 1;
+              }
+              elseif(($game->homeid == $leagueteams->all()[$i]->id || $game->awayid == $leagueteams->all()[$i]->id) && $game->winnerid != null)
+              {
+                $losses += 1;
+              }
+            }
+          $leagueteams->all()[$i]->wins = $wins;
+          $leagueteams->all()[$i]->losses = $losses;
+        }
+
+      $sortedleagueteams = $leagueteams->sortBy('losses')->sortByDesc('wins');
+
+
+      return view('league.show', compact('league', 'leagueteams', 'admin', 'userteams', 'games', 'sortedleagueteams'));
     }
 
     /**

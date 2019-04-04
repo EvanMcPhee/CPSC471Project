@@ -26,7 +26,7 @@
   </script>
 
   <div class='container'>
-    <h1 id='title'>Your Leagues </h1><br>
+    <h1 id='title'>All Leagues </h1><br>
     <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="yourLeagues()">
       Your Leagues
     </button>
@@ -49,7 +49,7 @@
 
 
     <div id=editdiv>
-      @include('league/partials/yourleagues')
+      @include('league/partials/allleagues')
     </div>
 
     <script id="cityleagues" type="text/html">

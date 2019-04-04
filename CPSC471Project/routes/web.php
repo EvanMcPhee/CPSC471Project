@@ -28,6 +28,7 @@ Route::post('leagues/acceptRequest', 'LeagueController@acceptRequest');
 Route::post('leagues/request', 'LeagueController@storeRequest');
 Route::resource('leagues', 'LeagueController');
 
+Route::get('messagehome', 'UserController@messageHome');
 
 
 Route::get('teams/request/{id}', 'TeamController@request');
@@ -41,10 +42,18 @@ Route::get('messagecreate', 'UserController@messageCreate');
 
 Route::post('messagestore', 'UserController@messageStore');
 
-Route::get('messagehome', 'UserController@messageHome');
-
 Route::get('show/{id}', 'UserController@show');
+
 
 Route::get('conversation/{username}', 'UserController@conversation');
 
 Route::post('messageupdate','UserController@messageUpdate');
+
+Route::get('leagues/{id}/schedule', 'GameController@schedule');
+Route::get('leagues/{id}/games', 'GameController@index');
+Route::get('leagues/{leagueid}/games/{gameid}/declarewinner', 'GameController@declarewinner');
+Route::get('leagues/{leagueid}/games/{gameid}', 'GameController@show');
+Route::post('storegame', 'GameController@store');
+Route::post('storeresults', 'GameController@storeResults');
+
+Route::get('leagues/{leagueid}/games/{gameid}/statform', 'StatController@statForm');

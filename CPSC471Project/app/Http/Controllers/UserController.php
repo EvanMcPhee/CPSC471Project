@@ -30,8 +30,6 @@ class UserController extends Controller
 
         public function messageStore(Request $message)
         {
-
-            $newmessage = new Message();
             $currentuser = Auth::user();
             $allusers = User::all();
 
