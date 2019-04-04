@@ -27,6 +27,12 @@
 
       <a href="{{ action('GameController@index', $league->id) }}" class="btn btn-primary"> View Games </a>
 
+      <a href="{{ action('EquipmentController@index', $league->id) }}" class="btn btn-primary"> View Rentable Equipment </a>
+
+      @if(Auth::user()->username == $league->admin_username)
+        <a href="{{ action('EquipmentController@add', $league->id) }}" class="btn btn-primary"> Add Rentable Equipment </a>
+      @endif
+
     <h4>Teams: </h4>
 
     <div class="list-group">
