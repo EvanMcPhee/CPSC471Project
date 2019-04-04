@@ -44,3 +44,7 @@ Route::post('messagestore', 'UserController@messageStore');
 Route::get('messagehome', 'UserController@messageHome');
 
 Route::get('show/{id}', 'UserController@show');
+
+Route::get('conversation/{username}', 'UserController@conversation');
+
+Route::post('messageupdate','UserController@messageUpdate');
