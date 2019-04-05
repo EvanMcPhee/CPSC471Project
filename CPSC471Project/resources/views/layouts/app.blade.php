@@ -79,10 +79,8 @@
                             &nbsp&nbsp
                             <a onclick="location.href='{{ url('/teams') }}'" class='nav-link'>Teams</a>
                             &nbsp&nbsp
-                            <a class='nav-link' href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                            <a class='nav-link' href="{{ action('\App\Http\Controllers\Auth\LoginController@logout') }}">
+                            Logout
                             </a>
 
 
