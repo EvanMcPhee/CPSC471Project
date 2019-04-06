@@ -6,7 +6,7 @@
 
 </script>
 
-<div class="container-fluid">
+<div class="container">
 <h1>{{$user->username}} <small>, Age: {{$user->age}}, Located: {{$user->province_state}}</small> </h1>
 @if(Auth::user()->username != $user->username)
 <button type='button' class='btn btn-primary' onclick="location.href='{{url('messagesend',$user->username)}}'"> Send Message </button>
@@ -17,14 +17,17 @@
 
 <div class="list-group">
   @foreach($teams as $team)
-      <div class="list-group-item list-group-item-action list-group-item-primary">
-        <div class='row'>
-          <div class='col-md-2' align='center'>
-            <h3>{{ $team->name }}</h3>
-          </div>
-          <div class='col-md-2'>
+  <div class="card">
+    <div class="card-header">
+
+        <h3>{{ $team->name }}</h3>
+
         <button type='button' class='btn btn-primary' onclick="location.href='{{ action('TeamController@show', $team->id) }}'"> Visit Team Homepage </button>
-      </div>
+    </div>
+
+
+
+      <!--
       <div class='col-md-7'>
       </div>
       <div class='col-md-1'>
@@ -40,11 +43,21 @@
           @endif
           @endforeach
         </div>
-        </div>
-      </div>
+        </div>  -->
+        @foreach($teamstats as $stat)
+          @if($stats->id == $team->id)
+          <div class="card-body">
+
+            <h4>{{$stats->stat_type}}:&nbsp {{$stats->value}} </h4>
+
+          </div>
+          @endif
+        @endforeach
     </div>
-    </div>
+  </div>
+  <br>
   @endforeach
+
 
 </div>
 
